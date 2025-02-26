@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://damsuw45mkl2h"]
+
+[ext_resource type="Shader" path="res://shader/bloom.gdshader" id="1_vta18"]
+[ext_resource type="Texture2D" uid="uid://bpp6dvjq3yo4v" path="res://Textures/maplaceholder.png" id="1_woppr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g410g"]
+shader = ExtResource("1_vta18")
+shader_parameter/hpass = 1.0
+shader_parameter/vpass = 1.0
+shader_parameter/radius = 49
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+material = SubResource("ShaderMaterial_g410g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(5, 5, 5, 1)
+position = Vector2(985, 554)
+texture = ExtResource("1_woppr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(929, 541)
