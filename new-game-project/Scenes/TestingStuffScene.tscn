@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://damsuw45mkl2h"]
+[gd_scene load_steps=13 format=3 uid="uid://damsuw45mkl2h"]
 
 [ext_resource type="Shader" path="res://shader/bloom.gdshader" id="1_vta18"]
 [ext_resource type="Texture2D" uid="uid://bpp6dvjq3yo4v" path="res://Textures/maplaceholder.png" id="1_woppr"]
+[ext_resource type="Texture2D" uid="uid://kkf83esh7174" path="res://Textures/Background.PNG" id="3_hsoni"]
+[ext_resource type="Texture2D" uid="uid://yv2pyvfc8a6m" path="res://Textures/Paint Layer 3.PNG" id="4_yhhch"]
+[ext_resource type="Texture2D" uid="uid://cv0ufxvq8xve8" path="res://Textures/Paint Layer 4.PNG" id="5_sn70e"]
+[ext_resource type="Texture2D" uid="uid://4toxndannl68" path="res://Textures/Paint Layer 5.PNG" id="6_n78gc"]
+[ext_resource type="Texture2D" uid="uid://b62btii5rtaxh" path="res://Textures/Paint Layer 7.PNG" id="7_k2gvj"]
+[ext_resource type="Texture2D" uid="uid://hkssm3v56bq5" path="res://Textures/Paint Layer 8.PNG" id="8_b4iyt"]
+[ext_resource type="Texture2D" uid="uid://q58aha4f654b" path="res://Textures/Paint Layer 6.PNG" id="9_75how"]
+[ext_resource type="Texture2D" uid="uid://bc7smte8xjjnh" path="res://Textures/Paint Layer 2.PNG" id="10_g0qcm"]
+[ext_resource type="Texture2D" uid="uid://ca744nl0ngjbv" path="res://Textures/Paint Layer 1.PNG" id="11_3mmlu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g410g"]
 shader = ExtResource("1_vta18")
 shader_parameter/hpass = 1.0
 shader_parameter/vpass = 1.0
-shader_parameter/radius = 49
+shader_parameter/radius = 30
 
 [node name="Node2D" type="Node2D"]
 
@@ -31,9 +40,49 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(5, 5, 5, 1)
-position = Vector2(985, 554)
+visible = false
+modulate = Color(1, 1, 1, 0.0156863)
+top_level = true
+position = Vector2(985, 551)
 texture = ExtResource("1_woppr")
+
+[node name="MAP" type="Sprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+position = Vector2(985, 554)
+texture = ExtResource("3_hsoni")
+
+[node name="Sprite2D3" type="Sprite2D" parent="MAP"]
+position = Vector2(-108, -61)
+texture = ExtResource("4_yhhch")
+
+[node name="Sprite2D4" type="Sprite2D" parent="MAP"]
+position = Vector2(-16, 43)
+texture = ExtResource("5_sn70e")
+
+[node name="Sprite2D5" type="Sprite2D" parent="MAP"]
+position = Vector2(-178, 166)
+texture = ExtResource("6_n78gc")
+
+[node name="Sprite2D7" type="Sprite2D" parent="MAP"]
+position = Vector2(229, -17)
+texture = ExtResource("7_k2gvj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="MAP"]
+position = Vector2(212, 372)
+texture = ExtResource("8_b4iyt")
+
+[node name="Sprite2D6" type="Sprite2D" parent="MAP"]
+modulate = Color(1, 0.245241, 0.187845, 1)
+position = Vector2(73, 378)
+texture = ExtResource("9_75how")
+
+[node name="Sprite2D9" type="Sprite2D" parent="MAP"]
+modulate = Color(0.339605, 0.542632, 1, 1)
+position = Vector2(-23, -231)
+texture = ExtResource("10_g0qcm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="MAP"]
+texture = ExtResource("11_3mmlu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(929, 541)
