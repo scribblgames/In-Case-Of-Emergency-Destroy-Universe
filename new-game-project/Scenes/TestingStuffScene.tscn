@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://damsuw45mkl2h"]
+[gd_scene load_steps=15 format=3 uid="uid://damsuw45mkl2h"]
 
 [ext_resource type="Shader" path="res://shader/bloom2.gdshader" id="1_d3raa"]
 [ext_resource type="Texture2D" uid="uid://bpp6dvjq3yo4v" path="res://Textures/maplaceholder.png" id="1_woppr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://q58aha4f654b" path="res://Textures/Paint Layer 6.PNG" id="9_75how"]
 [ext_resource type="Texture2D" uid="uid://bc7smte8xjjnh" path="res://Textures/Paint Layer 2.PNG" id="10_g0qcm"]
 [ext_resource type="Texture2D" uid="uid://ca744nl0ngjbv" path="res://Textures/Paint Layer 1.PNG" id="11_3mmlu"]
+[ext_resource type="Script" path="res://Scenes/Province.gd" id="12_gc72g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g410g"]
 shader = ExtResource("1_d3raa")
@@ -28,6 +29,9 @@ glow_blend_mode = 0
 glow_hdr_threshold = 0.75
 glow_map_strength = 0.0
 glow_map = ExtResource("4_yhhch")
+adjustment_brightness = 8.0
+adjustment_contrast = 8.0
+adjustment_saturation = 8.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -94,9 +98,18 @@ texture = ExtResource("10_g0qcm")
 
 [node name="Sprite2D2" type="Sprite2D" parent="MAP"]
 texture = ExtResource("11_3mmlu")
+script = ExtResource("12_gc72g")
+
+[node name="Area2D" type="Area2D" parent="MAP/Sprite2D2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MAP/Sprite2D2/Area2D"]
+position = Vector2(-985, -554)
+polygon = PackedVector2Array(502, 80, 508, 1037, 1459, 1040, 1458, 81)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(929, 541)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hm421")
+
+[connection signal="input_event" from="MAP/Sprite2D2/Area2D" to="MAP/Sprite2D2" method="_on_area_2d_input_event"]
