@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://damsuw45mkl2h"]
+[gd_scene load_steps=13 format=3 uid="uid://damsuw45mkl2h"]
 
-[ext_resource type="Shader" path="res://shader/bloom2.gdshader" id="1_d3raa"]
 [ext_resource type="Texture2D" uid="uid://bpp6dvjq3yo4v" path="res://Textures/maplaceholder.png" id="1_woppr"]
 [ext_resource type="Texture2D" uid="uid://kkf83esh7174" path="res://Textures/Background.PNG" id="3_hsoni"]
 [ext_resource type="Texture2D" uid="uid://yv2pyvfc8a6m" path="res://Textures/Paint Layer 3.PNG" id="4_yhhch"]
@@ -12,12 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bc7smte8xjjnh" path="res://Textures/Paint Layer 2.PNG" id="10_g0qcm"]
 [ext_resource type="Texture2D" uid="uid://ca744nl0ngjbv" path="res://Textures/Paint Layer 1.PNG" id="11_3mmlu"]
 [ext_resource type="Script" path="res://Scenes/Province.gd" id="12_gc72g"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g410g"]
-shader = ExtResource("1_d3raa")
-shader_parameter/bloomRadius = 0.735
-shader_parameter/bloomThreshold = 0.65
-shader_parameter/bloomIntensity = 0.24
 
 [sub_resource type="Environment" id="Environment_hm421"]
 background_mode = 3
@@ -35,26 +28,6 @@ adjustment_saturation = 8.0
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
-visible = false
-material = SubResource("ShaderMaterial_g410g")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.0156863)
@@ -62,54 +35,136 @@ top_level = true
 position = Vector2(985, 551)
 texture = ExtResource("1_woppr")
 
-[node name="MAP" type="Sprite2D" parent="."]
-position = Vector2(985, 554)
-texture = ExtResource("3_hsoni")
-
-[node name="Sprite2D3" type="Sprite2D" parent="MAP"]
-position = Vector2(-108, -61)
-texture = ExtResource("4_yhhch")
-
-[node name="Sprite2D4" type="Sprite2D" parent="MAP"]
-position = Vector2(-16, 43)
-texture = ExtResource("5_sn70e")
-
-[node name="Sprite2D5" type="Sprite2D" parent="MAP"]
-position = Vector2(-178, 166)
-texture = ExtResource("6_n78gc")
-
-[node name="Sprite2D7" type="Sprite2D" parent="MAP"]
-position = Vector2(229, -17)
-texture = ExtResource("7_k2gvj")
-
-[node name="Sprite2D8" type="Sprite2D" parent="MAP"]
-position = Vector2(212, 372)
-texture = ExtResource("8_b4iyt")
-
-[node name="Sprite2D6" type="Sprite2D" parent="MAP"]
-modulate = Color(1, 0.245241, 0.187845, 1)
-position = Vector2(73, 378)
-texture = ExtResource("9_75how")
-
-[node name="Sprite2D9" type="Sprite2D" parent="MAP"]
-modulate = Color(0.34, 0.543, 1, 1)
-position = Vector2(-23, -231)
-texture = ExtResource("10_g0qcm")
-
-[node name="Sprite2D2" type="Sprite2D" parent="MAP"]
-texture = ExtResource("11_3mmlu")
-script = ExtResource("12_gc72g")
-
-[node name="Area2D" type="Area2D" parent="MAP/Sprite2D2"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MAP/Sprite2D2/Area2D"]
-position = Vector2(-985, -554)
-polygon = PackedVector2Array(502, 80, 508, 1037, 1459, 1040, 1458, 81)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(929, 541)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hm421")
 
-[connection signal="input_event" from="MAP/Sprite2D2/Area2D" to="MAP/Sprite2D2" method="_on_area_2d_input_event"]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MAP" type="Sprite2D" parent="Control"]
+position = Vector2(985, 554)
+texture = ExtResource("3_hsoni")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control/MAP"]
+texture = ExtResource("11_3mmlu")
+
+[node name="YOU" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.379009, 0.572699, 1, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -1387.0
+offset_right = 124.0
+offset_bottom = -1123.0
+grow_vertical = 0
+texture_normal = ExtResource("10_g0qcm")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Belgum"), NodePath("../german")]
+occupied = true
+
+[node name="Belgum" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.988235, 0.352941, 0, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -1201.0
+offset_right = 70.0
+offset_bottom = -937.0
+grow_vertical = 0
+texture_normal = ExtResource("4_yhhch")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Fr"), NodePath("../lux"), NodePath("../german"), NodePath("../YOU")]
+Swiss = true
+occupied = true
+
+[node name="Fr" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.988235, 0.352941, 0, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -489.0
+offset_top = -1188.0
+offset_right = 126.0
+offset_bottom = -542.0
+grow_vertical = 0
+texture_normal = ExtResource("6_n78gc")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Belgum"), NodePath("../lux"), NodePath("../german"), NodePath("../Switzerland")]
+Swiss = true
+
+[node name="Switzerland" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.989722, 0.35282, 5.77569e-07, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -754.0
+offset_right = 524.0
+offset_bottom = -108.0
+grow_vertical = 0
+texture_normal = ExtResource("9_75how")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Northitaly"), NodePath("../german"), NodePath("../Fr")]
+Swiss = true
+
+[node name="Northitaly" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.988235, 0.352941, 0, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -756.0
+offset_right = 571.0
+offset_bottom = -110.0
+grow_vertical = 0
+texture_normal = ExtResource("8_b4iyt")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Switzerland"), NodePath("../german")]
+Swiss = true
+
+[node name="german" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.988235, 0.352941, 0, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -1508.0
+offset_right = 599.0
+offset_bottom = -576.0
+grow_vertical = 0
+texture_normal = ExtResource("7_k2gvj")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Belgum"), NodePath("../Switzerland"), NodePath("../YOU"), NodePath("../Northitaly"), NodePath("../lux"), NodePath("../Fr")]
+Swiss = true
+occupied = true
+
+[node name="lux" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
+modulate = Color(0.988235, 0.352941, 0, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -1027.0
+offset_right = 565.0
+offset_bottom = -95.0
+grow_vertical = 0
+texture_normal = ExtResource("5_sn70e")
+script = ExtResource("12_gc72g")
+Neighbors = [NodePath("../Belgum"), NodePath("../Fr"), NodePath("../german")]
+Swiss = true
+
+[connection signal="pressed" from="Control/MAP/YOU" to="Control/MAP/YOU" method="_on_pressed"]
+[connection signal="pressed" from="Control/MAP/Belgum" to="Control/MAP/Belgum" method="_on_pressed"]
+[connection signal="pressed" from="Control/MAP/Fr" to="Control/MAP/Fr" method="_on_pressed"]
+[connection signal="pressed" from="Control/MAP/Switzerland" to="Control/MAP/Switzerland" method="_on_pressed"]
+[connection signal="pressed" from="Control/MAP/Northitaly" to="Control/MAP/Northitaly" method="_on_pressed"]
+[connection signal="pressed" from="Control/MAP/german" to="Control/MAP/german" method="_on_pressed"]
+[connection signal="pressed" from="Control/MAP/lux" to="Control/MAP/lux" method="_on_pressed"]
