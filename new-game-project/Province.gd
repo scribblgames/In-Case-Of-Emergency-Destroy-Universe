@@ -8,6 +8,7 @@ extends TextureButton
 
 @export var occupied : bool
 
+@export var value = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,14 +20,17 @@ func _ready() -> void:
 	bitmap.create_from_image_alpha(image)
 	# Assign it to the mask
 	texture_click_mask = bitmap
-	
+	UpdateMe()
 	if occupied:
 		SpawnUnit()
 	
 			
 	pass # Replace with function body.
 
-
+func DeleteUnit(tb : TextureButton):
+	var children = tb.get_children()
+	for child in children:
+		child.free()
 
 func SpawnUnit():
 	var instance = Unit.instantiate()
@@ -39,6 +43,11 @@ func SpawnUnit():
 	#instance.reparent()
 	pass
 
+func UpdateMe():
+	if not Swiss:
+		modulate = Color.hex(0x6192ffff)
+	else:
+		modulate = Color.hex(0xfc5a00ff)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
@@ -46,5 +55,27 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	modulate = Color(0, 0, 0)
+	#what the hell is this
+	
+	if Globals.Selected_Prov1 == self:
+			Globals.Selected_Prov1 = null
+	if Globals.Selected_Prov1 == null:
+			Globals.Selected_Prov1 = self
+	elif Globals.Selected_Prov2 == null and Globals.Selected_Prov1.Neighbors.has(self):
+			Globals.Selected_Prov2 = self
+	if not Globals.Selected_Prov2 == null and Globals.Selected_Prov2.Swiss and Globals.Selected_Prov2.occupied:
+		Globals.Selected_Prov2 = null
+		Globals.Selected_Prov1 = null
+	if not Globals.Selected_Prov1 == null and Globals.Selected_Prov1.Swiss:
+		Globals.Selected_Prov1 = null
+	if not Globals.Selected_Prov2 == null:
+		DeleteUnit(Globals.Selected_Prov1)
+		Globals.Selected_Prov2.occupied = true
+		Globals.Selected_Prov1.occupied = false
+		Globals.Selected_Prov2.Swiss = false
+		Globals.Selected_Prov1 = null
+		Globals.Selected_Prov2 = null
+		UpdateMe()
+		SpawnUnit()
+	
 	pass # Replace with function body.

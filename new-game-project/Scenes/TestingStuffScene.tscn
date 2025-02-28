@@ -52,7 +52,6 @@ position = Vector2(985, 554)
 texture = ExtResource("3_hsoni")
 
 [node name="YOU" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.379009, 0.572699, 1, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -67,7 +66,6 @@ Neighbors = [NodePath("../Belgum"), NodePath("../german")]
 occupied = true
 
 [node name="Belgum" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.988235, 0.352941, 0, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -80,10 +78,8 @@ texture_normal = ExtResource("4_yhhch")
 script = ExtResource("12_gc72g")
 Neighbors = [NodePath("../Fr"), NodePath("../lux"), NodePath("../german"), NodePath("../YOU")]
 Swiss = true
-occupied = true
 
 [node name="Fr" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.988235, 0.352941, 0, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -98,7 +94,6 @@ Neighbors = [NodePath("../Belgum"), NodePath("../lux"), NodePath("../german"), N
 Swiss = true
 
 [node name="Switzerland" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.989722, 0.35282, 5.77569e-07, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -113,7 +108,6 @@ Neighbors = [NodePath("../Northitaly"), NodePath("../german"), NodePath("../Fr")
 Swiss = true
 
 [node name="Northitaly" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.988235, 0.352941, 0, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -128,7 +122,6 @@ Neighbors = [NodePath("../Switzerland"), NodePath("../german")]
 Swiss = true
 
 [node name="german" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.988235, 0.352941, 0, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -144,7 +137,6 @@ Swiss = true
 occupied = true
 
 [node name="lux" type="TextureButton" parent="Control/MAP" node_paths=PackedStringArray("Neighbors")]
-modulate = Color(0.988235, 0.352941, 0, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
