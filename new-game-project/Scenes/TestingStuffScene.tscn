@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://q58aha4f654b" path="res://Textures/Paint Layer 6.PNG" id="9_75how"]
 [ext_resource type="Texture2D" uid="uid://bc7smte8xjjnh" path="res://Textures/Paint Layer 2.PNG" id="10_g0qcm"]
 [ext_resource type="Texture2D" uid="uid://ca744nl0ngjbv" path="res://Textures/Paint Layer 1.PNG" id="11_3mmlu"]
-[ext_resource type="Script" path="res://Scenes/Province.gd" id="12_gc72g"]
+[ext_resource type="Script" path="res://Province.gd" id="12_gc72g"]
 
 [sub_resource type="Environment" id="Environment_hm421"]
 background_mode = 3
